@@ -1,59 +1,204 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📘 Project README
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🧩 Deskripsi Project
 
-## About Laravel
+Project ini adalah aplikasi web berbasis Laravel yang menyediakan sistem **Login dengan Custom Token**, **Manajemen User**, **Manajemen Role**, **Fitur Filter & Export Data**, serta **Upload & Manajemen File via FTP**. Proyek ini dibuat untuk mempermudah pengelolaan user dan role, melakukan pencarian, dan mengelola file CSV yang disimpan di server FTP.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi dibangun dengan konsep yang mudah dipahami, interaktif, dan tetap mengikuti standar alur kerja aplikasi berbasis Laravel.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Fitur Utama
 
-## Learning Laravel
+### 1. **Sistem Login (Custom Token per Session)**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* Token tidak disimpan di database.
+* Ditambahkan mekanisme login dan logout standar.
+* Menampilkan "Selamat datang, {{ user }}" pada pojok kanan atas halaman.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. **Master User (Admin Kelola User)**
 
-## Laravel Sponsors
+Admin dapat:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* Membuat user baru
+* Mengatur Username, Password, Role, Email
+* Mengirim email otomatis setelah user berhasil dibuat
+* Mengedit user & role tertentu
 
-### Premium Partners
+### 3. **Master Role**
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+* Menampilkan seluruh data role
+* Tidak bisa menghapus role yang sedang dipakai oleh user
+* Jika role di-update, nama di Master User akan ikut berubah
+* Role `admin` **tidak bisa dihapus dan tidak dapat mengubah nama — hanya deskripsi**
 
-## Contributing
+### 4. **Fitur Filter & Export Data**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Filter berdasarkan:
 
-## Code of Conduct
+* Username (dengan validasi)
+* Creation date
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Hasil filter ditampilkan dalam tabel berisi:
 
-## Security Vulnerabilities
+* Username
+* Role
+* ID User
+* Email
+* Creation Date
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Export:
 
-## License
+* **PDF** (berisi tabel lengkap)
+* **CSV** (delimiter `|`)
+* Nama file: `pdf/CSV_<tanggal-dengan-detik>_<jenisDokumen>.pdf/csv`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Termasuk loading animation saat proses.
+
+### 5. **Admin Edit Dirinya Sendiri**
+
+* Jika admin mengubah role-nya sendiri, sistem otomatis melakukan logout dan kembali ke halaman login.
+
+### 6. **Upload CSV ke FTP + CRUD File**
+
+Menu baru meliputi:
+
+* Tombol upload file CSV → otomatis dikirim ke FTP server
+* Tabel daftar file dari FTP (ditampilkan via `ftp_nlist`)
+* Fitur delete file
+
+---
+
+## 📦 Struktur Menu Aplikasi
+
+```
+Dashboard
+├── Login
+├── Master User
+│     ├── Tambah User
+│     ├── Edit User
+│     └── List User
+├── Master Role
+│     ├── Tambah Role
+│     ├── Edit Role
+│     └── List Role
+├── Filter & Export
+│     ├── Filter Username & Date
+│     ├── Export PDF
+│     └── Export CSV
+└── File Manager (FTP)
+      ├── Upload CSV
+      ├── List File CSV
+      └── Delete File
+```
+
+---
+
+## ⚠️ Hal Penting yang Harus Diperhatikan
+
+### 🔐 **Sistem Role**
+
+* Role "admin" tidak boleh diubah namanya
+* Role yang sedang digunakan user tidak boleh dihapus
+* Update role akan mengupdate juga di tabel user
+
+### 📤 **Upload File ke FTP**
+
+* Pastikan credential FTP benar
+* Format file wajib CSV
+
+### 📄 **Export File**
+
+* Pastikan folder penyimpanan export dapat diakses oleh Laravel (permission write)
+
+### ✉️ **Email**
+
+* Pastikan SMTP sudah dikonfigurasi di `.env`
+
+---
+
+## 🛠️ Cara Install Project
+
+### 1. Clone Repository
+
+```bash
+git clone <url-repository>
+cd project-folder
+```
+
+### 2. Install Dependencies
+
+```bash
+composer install
+npm install
+npm run build
+```
+
+### 3. Copy & Setup Environment
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env`:
+
+* Database
+* SMTP email
+* FTP server
+* App URL
+
+### 4. Generate Key
+
+```bash
+php artisan key:generate
+```
+
+### 5. Migrasi Database
+
+```bash
+php artisan migrate --seed
+```
+
+(Seeder akan membuat role admin default)
+
+### 6. Jalankan Server
+
+```bash
+php artisan serve
+```
+
+---
+
+## 🧪 Cara Menggunakan Aplikasi
+
+### ✔ 1. Login menggunakan akun admin default
+
+### ✔ 2. Buka menu "Master Role" → tambahkan role jika diperlukan
+
+### ✔ 3. Buka menu "Master User" → daftarkan user baru
+
+* Email akan terkirim otomatis
+
+### ✔ 4. Buka menu "Filter & Export"
+
+* Masukkan username valid → search
+* Pilih creation date
+* Export ke PDF atau CSV
+
+### ✔ 5. Buka menu "File Manager (FTP)"
+
+* Upload file CSV
+* File akan muncul di tabel
+* Hapus file dari FTP jika diperlukan
+
+---
+
+## 📮 Kontak
+
+Jika ingin diskusi atau mengalami masalah pada aplikasi, silakan hubungi developer melalui GitHub Issues atau email terkait.
+
+---
+
+## 📄 Lisensi
+
+Project ini menggunakan lisensi standar MIT (jika diperlukan).
