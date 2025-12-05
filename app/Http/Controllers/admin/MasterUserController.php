@@ -9,6 +9,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 
 class MasterUserController extends Controller
@@ -60,6 +61,10 @@ class MasterUserController extends Controller
 
     public function export(Request $request, $type)
     {
+        // CEK SESSION DULU — WAJIB!
+        if (!Auth::check()) {
+            return response('Session expired', 401);
+        }
         $users = User::query();
 
         // Filter username
@@ -134,6 +139,7 @@ class MasterUserController extends Controller
                 'users' => $users,
                 'date'  => $request->date
             ]);
+            
             // MODE OPEN — TAMPILKAN TANPA DOWNLOAD
             if ($request->open) {
                 return response($pdf->output(), 200)
@@ -150,7 +156,10 @@ class MasterUserController extends Controller
     public function import(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:csv,txt'
+            'file' => 'required|file|mimes:csv,txt', // sesuaikan validasi
+        ],[
+            'file.file' => 'Yang diunggah harus berupa file.',
+            'file.mimes' => 'File harus berformat CSV atau TXT.',
         ]);
 
         $file = $request->file('file');
@@ -177,12 +186,11 @@ class MasterUserController extends Controller
             // Skip jika data kurang kolom
             if (count($row) < 4) continue;
 
-            // Cek duplikasi username/email (opsional)
+            // Cek duplikasi username/email
             $exists = User::where('username', $row[1])
                         ->orWhere('email', $row[2])
                         ->first();
-
-            if ($exists) continue; // skip duplikat
+            if ($exists) continue;
 
             User::create([
                 'id_role'  => $row[0],
@@ -195,7 +203,6 @@ class MasterUserController extends Controller
         }
 
         fclose($handle);
-
         return back()->with('success', "$countInsert user berhasil ditambahkan.");
     }
 

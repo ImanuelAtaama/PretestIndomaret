@@ -1,0 +1,13 @@
+file upload- ke ftp - nampilin di tabel
+menu baru:
+- tombol upload csv
+- tabel penampung 
+	- isi tabel : nama file
+
+baca ftp: ftp_nlist <1k
+server ftp dikasi nti
+	- crud
+
+delete file dari table (optional)
+
+SELASA

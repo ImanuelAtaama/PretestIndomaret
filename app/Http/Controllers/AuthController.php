@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str; // Untuk generate random token
-use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -28,7 +27,7 @@ class AuthController extends Controller
 
 
     return back()->withErrors([
-        'username' => 'Login gagal',
+        'username' => 'Login gagal, username/password salah.',
     ]);
 }
 

@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="mt-32  max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+    @if ($errors->any())
+        <div class="mb-4 text-red-500 text-center">
+            {{ $errors->first() }}
+        </div>
+    @endif
     <h2 class="text-2xl font-bold mb-4">Login</h2>
     <form method="POST" action="{{ route('login') }}">
         @csrf

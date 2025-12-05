@@ -94,6 +94,16 @@
     </div>
 </div>
 
+<div id="loading-overlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="text-white text-lg">
+        <svg class="animate-spin h-8 w-8 mr-2 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+        </svg>
+        Memproses, harap tunggu...
+    </div>
+</div>
+
 <script>
     function openModal(type, id = null, role_name = '', Deskripsi = '') {
         document.getElementById('modal').classList.remove('hidden');
@@ -117,5 +127,22 @@
     function closeModal() {
         document.getElementById('modal').classList.add('hidden');
     }
+    function showLoading() {
+        document.getElementById('loading-overlay').classList.remove('hidden');
+    }
+
+    function hideLoading() {
+        document.getElementById('loading-overlay').classList.add('hidden');
+    }
+
+    document.getElementById('role-form').onsubmit = () => {
+        showLoading();
+    };
+
+    document.querySelectorAll('form[method="POST"]').forEach(form => {
+        form.addEventListener('submit', () => {
+            showLoading();
+        });
+    });
 </script>
 @endsection

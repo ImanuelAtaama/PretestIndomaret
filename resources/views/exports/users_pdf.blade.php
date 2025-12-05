@@ -1,6 +1,19 @@
-<h1 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 20px;">
+<h1 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 5px;">
     Data Users
 </h1>
+
+{{-- Tampilkan info filter tanggal kalau ada --}}
+@if(!empty($date))
+    <h1 style="text-align: center; font-size: 14px; margin-bottom: 20px;">
+        @if(str_contains($date, ' to '))
+            Pada Tanggal {{ $date }}
+        @else
+            Pada Tanggal {{ $date }}
+        @endif
+    </h1>
+@else
+    <p style="margin-bottom: 20px;"></p> {{-- spasi supaya jarak sama --}}
+@endif
 
 <table width="100%" border="1" cellspacing="0" cellpadding="5">
     <thead>

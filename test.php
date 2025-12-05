@@ -34,7 +34,7 @@ $fp = fopen($filename, 'w');
 fputcsv($fp, ['id_role', 'username', 'email', 'password'], '|');
 
 // Generate 100 baris
-for ($i = 0; $i < 100; $i++) {
+for ($i = 0; $i < 10; $i++) {
     $id_role = $roles[array_rand($roles)];
     $username = randomUsername();
     $domains = ["mail.com", "gmail.com", "example.net", "test.org"];

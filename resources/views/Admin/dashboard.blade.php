@@ -12,5 +12,9 @@
         <h3 class="text-xl font-bold">Master Role</h3>
         <p>Kelola peran</p>
     </a>
+    <a href="{{ route('admin.ftp.index') }}" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg">
+        <h3 class="text-xl font-bold">File Transfer Protocol</h3>
+        <p>Kelola FIle</p>
+    </a>
 </div>
 @endsection

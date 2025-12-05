@@ -67,6 +67,9 @@
                         <li>
                             <a href="{{ route('admin.master_role.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">Master Role</a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.ftp.index') }}" class="block px-4 py-2 rounded hover:bg-gray-100">File Transfer Protocol</a>
+                        </li>
                     @endif
 
                     @if(Auth::check())

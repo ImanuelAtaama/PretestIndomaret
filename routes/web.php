@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\MasterUserController;
 use App\Http\Controllers\Admin\MasterRoleController;
+use App\Http\Controllers\admin\FtpUploadController;
 
 // Auth Routes (tambah middleware guest)
 Route::middleware(['guest'])->group(function () {
@@ -25,5 +26,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/master_user', [MasterUserController::class, 'index'])->name('master_user.index');
         Route::get('/master_user/export/{type}', [MasterUserController::class, 'export'])->name('master_user.export');
         Route::post('/master_user/import', [MasterUserController::class, 'import'])->name('master_user.import');
+        Route::get('/ftp', [FtpUploadController::class, 'index'])->name('ftp.index');
+        Route::post('/ftp/upload', [FtpUploadController::class, 'upload'])->name('ftp.upload');
+        Route::get('/ftp/delete/{file}', [FtpUploadController::class, 'delete'])->name('ftp.delete');
     });
 });
