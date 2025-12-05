@@ -199,6 +199,6 @@ Jika ingin diskusi atau mengalami masalah pada aplikasi, silakan hubungi develop
 
 ---
 
-## 📄 Lisensi
+<!-- ## 📄 Lisensi
 
-Project ini menggunakan lisensi standar MIT (jika diperlukan).
+Project ini menggunakan lisensi standar MIT (jika diperlukan). -->
