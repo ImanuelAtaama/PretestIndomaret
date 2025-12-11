@@ -47,19 +47,19 @@ return [
             'report' => false,
         ],
 
-        'ftp' => [
-            'driver'   => 'ftp',
-            'host'     => env('FTP_HOST', '172.20.22.30'),     // ganti sesuai server FTP kamu
-            'username' => env('FTP_USERNAME', 'ftpprepopigrdev'),   // username FTP
-            'password' => env('FTP_PASSWORD', 'xxFTPPREPOPIGRDEVxx'),   // password FTP
+        // 'ftp' => [
+        //     'driver'   => 'ftp',
+        //     'host'     => env('FTP_HOST', '172.20.22.30'),     // ganti sesuai server FTP kamu
+        //     'username' => env('FTP_USERNAME', 'ftpprepopigrdev'),   // username FTP
+        //     'password' => env('FTP_PASSWORD', 'xxFTPPREPOPIGRDEVxx'),   // password FTP
 
-            // opsional, sesuaikan kalau perlu
-            'port'     => 21,
-            // 'root'     => '',         // root folder FTP
-            // 'passive'  => true,
-            // 'ssl'      => false,
-            'timeout'  => 30,
-        ],
+        //     // opsional, sesuaikan kalau perlu
+        //     'port'     => 21,
+        //     // 'root'     => '',         // root folder FTP
+        //     // 'passive'  => true,
+        //     // 'ssl'      => false,
+        //     'timeout'  => 30,
+        // ],
 
         's3' => [
             'driver' => 's3',

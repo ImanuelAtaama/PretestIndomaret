@@ -1,10 +1,55 @@
+[15:45, 12/5/2025] El: Bikin web 
+Login (custom token persession yang ga ush di masukin database)
+master user(admin buat acc user baru) 
+‌Username
+‌Pasword
+‌Role => drop down (admin, suplier, dll) 
+‌email
+Master role ( nampilin semua data)  ini bakal masuk ke sub menu role 
+‌role name 
+‌role deskripsi
+Bikin dulu dia menu akhir baru ke login menu 
+
+Setelah daftarin user baru bakal kirim email ke email yang di daftarin
+
+Ada batasan :
+	role yang sudah di pake user pada database master user, tidak bisa di apus di master role. kalo di update Namanya, maka di master user akan menyesuaikan juga
+	admin pada tabel role tidak bisa di apus dan di update haya bisa deskripsinya aja
+	di tiap file blade itu ada menu samping dan di pojok kana atas  ada tulisan “Selamat datang $user” dan ada lo…
+
+*update 1*
+Page baru
+
+Filter
+- username harus ada pengecekan valid baru bisa search
+- creation date
+Tabel 
+Username role id user email date
+
+Bawahnya ad tombol 
+Download untuk pdf dan CSV
+Muncul pop up route tempat download dmn 
+
+Hasil download nya pdf tabel
+CSV delimeter '|'
+
+Nama file downloadnya "pdf/CSV _tgl create sampe second. Dokumennya apa
+
+Tambahin loading animasi jika masi loding
+
+
+Admin ngedit dirinya untuk ganti role maka akan di lempar ke login
+
+
+
+*u
 file upload- ke ftp - nampilin di tabel
 menu baru:
 - tombol upload csv
 - tabel penampung 
 	- isi tabel : nama file
 
-baca ftp: ftp_nlist <1k
+baca ftp: ftp_nlist
 server ftp dikasi nti
 	- crud
 

@@ -29,5 +29,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/ftp', [FtpUploadController::class, 'index'])->name('ftp.index');
         Route::post('/ftp/upload', [FtpUploadController::class, 'upload'])->name('ftp.upload');
         Route::get('/ftp/delete/{file}', [FtpUploadController::class, 'delete'])->name('ftp.delete');
+        Route::get('/ftp/view/{file}', [FtpUploadController::class, 'view'])->name('ftp.view');
     });
 });

@@ -26,14 +26,14 @@
         <button
             onclick="document.getElementById('uploadModal').classList.remove('hidden')"
             class="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700">
-            Upload CSV
+            Upload
         </button>
     </div>
 
     {{-- Upload Modal --}}
     <div id="uploadModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
         <div class="bg-white rounded p-6 w-96">
-            <h2 class="text-lg font-semibold mb-4">Upload CSV ke FTP</h2>
+            <h2 class="text-lg font-semibold mb-4">Upload File ke FTP</h2>
 
             <form id="csv-upload-form" action="{{ route('admin.ftp.upload') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -56,28 +56,55 @@
             <thead>
                 <tr class="bg-gray-200 text-left">
                     <th class="px-4 py-2 font-semibold">Nama File</th>
+                    <th class="px-4 py-2 font-semibold">Ukuran</th>
+                    <th class="px-4 py-2 font-semibold">Tanggal</th>
                     <th class="px-4 py-2 font-semibold w-32">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($files as $file)
                     <tr class="border-b">
-                        <td class="px-4 py-2">{{ basename($file) }}</td>
-                        <td class="px-4 py-2 ">
-                            <a href="{{ route('admin.ftp.delete', basename($file)) }}"
-                                class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 delete-file">
-                                Hapus
-                            </a>
+                        <td class="px-4 py-2">
+                            {{ $file['name'] }}
+                        </td>
+
+                        <td class="px-4 py-2">
+                            @if($file['is_dir'])
+                                <i>Folder</i>
+                            @else
+                                {{ number_format($file['size']) }} bytes
+                            @endif
+                        </td>
+
+                        <td class="px-4 py-2">
+                            {{ $file['date'] }}
+                        </td>
+
+                        <td class="px-4 py-2">
+                            @if(!$file['is_dir'])
+                                <div class="flex items-center space-x-2">
+                                    <a href="{{ route('admin.ftp.view', $file['name']) }}"
+                                        class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                        View
+                                    </a>
+
+                                    <a href="{{ route('admin.ftp.delete', $file['name']) }}"
+                                        class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                        Hapus
+                                    </a>
+                                </div>
+                            @endif
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="2" class="px-4 py-2 text-gray-500 text-center">Tidak ada file.</td>
+                        <td colspan="4" class="px-4 py-2 text-gray-500 text-center">Tidak ada file.</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
     </div>
+
 </div>
 
 {{-- Loading Overlay --}}
